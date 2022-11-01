@@ -1,0 +1,57 @@
+#guide-page {
+    height: 30px;
+    width: 120px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -35px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+  }
+  
+  .btnPageL {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: auto;
+    bottom: 0;
+    margin: auto;
+  }
+  
+  .btnPageR {
+    position: absolute;
+    top: 0;
+    left: auto;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+  }
+  
+  .btnPageL,
+  .btnPageR,
+  #info_page {
+    width: 35px;
+    height: 25px;
+    font-size: 1.2em;
+    user-select: none;
+    cursor: pointer;
+    border: none;
+    border-radius: 4px;
+    background-color: #f1f1f1f1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  #info_page {
+    cursor: default;
+    margin: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+  }

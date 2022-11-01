@@ -1,0 +1,264 @@
+.card {
+  width: 200px;
+  height: 330px;
+  margin: 40px 30px;
+  position: relative;
+  transition: all 0.3s;
+}
+
+.card:hover {
+  transform: scale(1.2);
+}
+
+.frontCard,
+.backCard {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  backface-visibility: hidden;
+  background-color: #141414;
+  transition: 0.5s;
+  box-shadow: 20px 20px #2121213e;
+  overflow: hidden;
+}
+
+.frontCard {
+  transform: rotateY(0deg);
+}
+
+.backCard {
+  transform: rotateY(180deg);
+}
+
+.cardImg {
+  width: calc(100% - 40px);
+  height: calc(160px - 40px);
+  padding: 20px;
+  object-fit: contain;
+  user-select: none;
+  background-color: #2c2c2c;
+}
+
+.Datos {
+  width: 100%;
+  height: 160px;
+  padding: 0;
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  margin: 10px 0;
+}
+
+.cardName {
+  background-color: #000;
+  padding: 5px 10px;
+  color: #fff;
+  user-select: none;
+  border: solid 1px gray;
+  user-select: none;
+  font-size: 1.2em;
+  letter-spacing: 1px;
+}
+
+.type {
+  height: 25px;
+  margin: 10px 0;
+  display: flex;
+  font-size: 1.2em;
+  gap: 5px;
+}
+
+.pType {
+  margin: 0;
+  padding: 2px 5px;
+  border-radius: 2px;
+  user-select: none;
+}
+
+.btnFavorite {
+  height: 35px;
+  width: 35px;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 1.5em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 25px;
+  background-color: #f1f1f13b;
+  color: #fff;
+  border: none;
+  transition: 0.16s;
+}
+
+.btnFavorite:active {
+  transform: scale(1.2);
+}
+
+.btnFavorite:hover {
+  color: #e3435e;
+}
+
+.priceBox {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+.pPrice {
+  color: #fff;
+  font-size: 2.4em;
+  width: 70px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  user-select: none;
+}
+
+.btnBag {
+  width: 60px;
+  height: 35px;
+  font-size: 1.5em;
+  border: none;
+  border-radius: 5px;
+  background-color: #414141be;
+  color: #fff;
+  transition: 0.2s;
+}
+
+.btnBag:active {
+  transform: scale(1.2);
+}
+
+.btnProduct:hover {
+  background-color: #da3b26;
+  color: #f1f1f1;
+}
+
+.normal {
+  background-color: #989898;
+}
+.fighting {
+  background-color: #ffa300;
+}
+.flying {
+  background-color: #96cafc;
+}
+.poison {
+  background-color: #9850ce;
+  color: #fff;
+}
+.ground {
+  background-color: #9c6633;
+}
+.rock {
+  background-color: #bbb790;
+}
+.bug {
+  background-color: #a8dd6b;
+}
+.ghost {
+  background-color: #6c4272;
+}
+.steel {
+  background-color: #6db2d4;
+}
+.fire {
+  background-color: #ff6132;
+  color: #fff;
+}
+.water {
+  background-color: #2f91ff;
+  color: #fff;
+}
+.grass {
+  background-color: #42a542;
+}
+.electric {
+  background-color: #ddd12b;
+}
+.psychic {
+  background-color: #ff607c;
+}
+.ice {
+  background-color: #44d5ff;
+}
+.dragon {
+  background-color: #6077d7;
+}
+.dark {
+  background-color: #2e2e2e;
+  color: #fff;
+}
+.fairy {
+  background-color: #cf95e0;
+}
+.unknown {
+  background-color: transparent;
+}
+.shadow {
+  background-color: #3e0168;
+}
+
+.pDes {
+  width: calc(100% - 10px);
+  padding: 0 5px;
+  color: #fff;
+  font-size: 1.1em;
+  text-align: center;
+  line-height: 25px;
+  user-select: none;
+  font-family: Arial, Helvetica, sans-serif;
+
+}
+
+.genus {
+  color: #fff;
+  width: max-content;
+  height: 30px;
+  padding: 0 5px;
+  text-align: center;
+  margin: 5px 0 0 0 ;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: solid 1px white;
+  user-select: none;
+}
+
+.datos2 {
+  list-style: none;
+  padding: 0;
+  width: 100%;
+  color: #fff;
+  display: flex;
+  /* flex-direction: column; */
+  align-items: center;
+  justify-content: center;
+  gap:30px;
+  margin: 0;
+}
+
+.datos2 > li{
+  width: max-content;
+  height: max-content;
+  user-select: none;
+  text-align: center;
+  line-height: 1.1em;
+  font-size: 1.2em;
+  border: solid 1px #fff;
+  padding: 5px;
+  border-radius: 3px;
+}
