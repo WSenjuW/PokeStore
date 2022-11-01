@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import NavTopV1 from './CWC/NavTop1_0.js';
 import MenuFav from './menuFav';
 
+
 export function WebBox(props) {
     const [Datos, setDatos] = useState([]);
     const [inputValue, setInputValue] = useState();
