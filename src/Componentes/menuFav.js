@@ -1,12 +1,10 @@
 import './menuFav.css';
-
 export default function MenuFav(props) {
-
 
     return (
         <div
             id='menuFavBox'
-            onMouseOut={()=>console.log("fuera")}
+            // onMouseOut={() => console.log("fuera")}
         >
             <span id='puntaMF' />
             <ul id='contenidoMF'>
@@ -23,14 +21,13 @@ export default function MenuFav(props) {
                                 />
                                 <p className='pItemMF'>{e.name}</p>
                                 <button className='btnMF'
-                                tabIndex={-1}
+                                    tabIndex={-1}
                                     onClick={() => props.SetFav([...props.favList.filter((el) => el !== e.id)])}
                                 >X</button>
                             </li>
                         )
                         :
                         <p id="mensajeMF">Actualmente no tienes ningún producto en tu lista de favoritos</p>
-
                 }
             </ul>
         </div>

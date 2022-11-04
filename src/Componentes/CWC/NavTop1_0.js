@@ -10,47 +10,49 @@ export default function NavTop1_0(props) {
     const EffectMenu = () => {
         if (inputRef.current.style.width === "200px" && inputRef.current.value === "")
             inputRef.current.style.width = 0
-        else inputRef.current.style.width = "200px"
+        else{inputRef.current.style.width = "200px"; inputRef.current.focus() } 
     };
+
+
+
+
     return (
         <nav id='navTopBox'>
-            <h1 id='titleNavTop'>Pokémon<br />Store</h1>
+            <h1 id='titleNavTop' translate="no">Pokémon<br />Store</h1>
             <div id='div_aux'>
                 <input
                     ref={inputRef}
                     type="text"
                     id='buscador'
-                    onChange={(e)=> props.setIV(e.target.value.toLocaleLowerCase())}
+                    onChange={(e) => props.setIV(e.target.value.toLocaleLowerCase())}
                     disabled={false}
                     maxLength={12}
                     autoComplete="off"
                     onBlur={() =>
                         inputRef.current.value === "" &&
-                            (inputRef.current.style.width = 0)
+                        (inputRef.current.style.width = 0)
                     }
                 />
                 <button
                     id="btnSearch"
                     ref={btnRef}
                     onClick={EffectMenu}
-
-
-
-                ><BsSearch /></button>
+                >
+                    <BsSearch /></button>
                 <button
-                 className="btnNavTop" 
-                 onClick={()=> props.FMO === "on" ? props.SetFMO("off"):  props.SetFMO("on")}
+                    className="btnNavTop"
+                    onClick={() => props.FMO === "on" ? props.SetFMO("off") : props.SetFMO("on")}
 
-                 >
+                >
                     <MdFavorite />
                     {props.fav !== 0 &&
-                     <span className="cantidad">{props.fav <= 9 ? props.fav : "+9"}</span>
+                        <span className="cantidad">{props.fav <= 9 ? props.fav : "+9"}</span>
                     }
                 </button>
                 <button className="btnNavTop" >
                     <BsFillCartFill />
-                    {props.car !== 0  &&
-                    <span className="cantidad">{props.car}</span>
+                    {props.car !== 0 &&
+                        <span className="cantidad">{props.car}</span>
                     }
                 </button>
             </div>

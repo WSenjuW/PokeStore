@@ -1,164 +1,166 @@
 #btn_filter {
-    position: absolute;
-    top: 15px;
-    left: 15px;
-    padding: 0px 10px;
-    display: flex;
-    border-radius: 5px;
-    align-items: center;
-    justify-content: center;
-    height: max-content;
-    font-size: 1.6em;
-    border: none;
-    cursor: pointer;
-    z-index: 28;
-    transition: 0.1s;
-    color: gray;
-  }
-  
-  #btn_filter:hover {
-    color: #191970;
-  }
-  
-  #panelBlack {
-    width: 0;
-    height: 100%;
-    background-color: #0000008e;
-    backdrop-filter: blur(3px);
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 29;
-  }
-  
-  #filtros {
-    width: 0;
-    height: calc(100% - 30px);
-    padding: 30px 0 0 0;
-    overflow: auto;
-    background-color: #f1f1f1;
-    backdrop-filter: blur(4px);
-    transition: 0.2s;
-    position: absolute;
-    left: 0;
-    top: 0;
-    z-index: 30;
-    overflow: hidden scroll;
-  }
-  
-  #filtros::-webkit-scrollbar {
-    width: 6px;
-    height: 0;
-    background-color: #80808027;
-  }
-  #filtros::-webkit-scrollbar-thumb {
-    background-color: #27272779;
-    border-radius: 5px;
-  }
-  
-  #filterList {
-    width: 100%;
-    padding: 20px 0;
-    height: auto;
-    margin: 0;
-    list-style-type: none;
-  }
-  
-  .listItem {
-    width: 100%;
-    margin: 15px 0;
-    min-height: 40px;
-    height: auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.2em;
-    user-select: none;
-    border-bottom: solid 1px #80808038;
-    border-top: solid 1px #80808038;
-  }
-  
-  .itemTitle {
-    width: calc(100% - 50px);
-    height: 40px;
-    display: flex;
-    align-items: center;
-    padding-left: 50px;
-  }
-  
-  .listInside {
-    width: 100%;
-    height: 0;
-    padding: 0;
-    list-style-type: none;
-    overflow: hidden;
-    transition: 1s;
-    cursor: pointer;
-  }
-  
-  .listItem:hover > .listInside {
-    height: auto;
-  }
-  
-  .itemOption {
-    height: 40px;
-    margin: 5px 0;
-    display: flex;
-    align-items: center;
-    padding-left: 80px;
-    background-color: #8080802a;
-  }
-  .itemOption:hover {
-    background-color: #80808071;
-  }
+  height: 80px;
+  width: 80px;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  padding: 10px 0 0 15px;
+  display: flex;
+  border-radius: 5px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  font-size: 1.6em;
+  border: none;
+  cursor: pointer;
+  z-index: 28;
+  transition: 0.1s;
+  color: gray;
+  clip-path: polygon(0 0, 0% 100%, 100% 0);
+}
 
-  #filterListUsed {
-    /* outline: solid 1px red; */
-    height: auto;
-    width: 100%;
-    padding: 0;
-    list-style-type: none;
-  }
-  
-  #fLU_title {
-    width: 100%;
-    height: 30px;
-    padding-left: 10px;
-    color: gray;
-    border-top: solid 1px #0000004f;
-    user-select: none;
-    display: flex;
-    align-items: center;
-    min-width: max-content;
-  }
-  
-  .fLU_itemTitle {
-    user-select: none;
-  }
-  
-  .fLU_item {
-    height: 40px;
-    width: calc(100% - 30px);
-    display: flex;
-    align-items: center;
-    padding: 0 10px 0 20px;
-    justify-content: space-between;
-    min-width: max-content;
-    cursor: pointer;
-    margin: 10px 0;
-    border-top: solid 1px #8080802a;
-    border-bottom: solid 1px #8080802a;
-  }
-  
-  .fLU_item:hover {
-    background-color: #80808080;
-  }
-  
-  .btn_TypeDelete {
-    font-size: 1em;
-    padding: 0 10px;
-    margin: 0;
-    user-select: none;
-    cursor: pointer;
-  }
+#btn_filter:hover {
+  color: #191970;
+}
+
+#panelBlack {
+  width: 0;
+  height: 100%;
+  background-color: #0000008e;
+  backdrop-filter: blur(3px);
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 29;
+}
+
+#filtros {
+  width: 0;
+  height: calc(100% - 30px);
+  padding: 30px 0 0 0;
+  overflow: auto;
+  background-color: #f1f1f1;
+  backdrop-filter: blur(4px);
+  transition: 0.2s;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 30;
+  overflow: hidden scroll;
+}
+
+#filtros::-webkit-scrollbar {
+  width: 6px;
+  height: 0;
+  background-color: #80808027;
+}
+#filtros::-webkit-scrollbar-thumb {
+  background-color: #27272779;
+  border-radius: 5px;
+}
+
+#filterList {
+  width: 100%;
+  padding: 20px 0;
+  height: auto;
+  margin: 0;
+  list-style-type: none;
+}
+
+.listItem {
+  width: 100%;
+  margin: 15px 0;
+  min-height: 40px;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2em;
+  user-select: none;
+  border-bottom: solid 1px #80808038;
+  border-top: solid 1px #80808038;
+}
+
+.itemTitle {
+  width: calc(100% - 50px);
+  height: 40px;
+  display: flex;
+  align-items: center;
+  padding-left: 50px;
+}
+
+.listInside {
+  width: 100%;
+  height: 0;
+  padding: 0;
+  list-style-type: none;
+  overflow: hidden;
+  transition: 1s;
+  cursor: pointer;
+}
+
+.listItem:hover > .listInside {
+  height: auto;
+}
+
+.itemOption {
+  height: 40px;
+  margin: 5px 0;
+  display: flex;
+  align-items: center;
+  padding-left: 80px;
+  background-color: #8080802a;
+}
+.itemOption:hover {
+  background-color: #80808071;
+}
+
+#filterListUsed {
+  /* outline: solid 1px red; */
+  height: auto;
+  width: 100%;
+  padding: 0;
+  list-style-type: none;
+}
+
+#fLU_title {
+  width: 100%;
+  height: 30px;
+  padding-left: 10px;
+  color: gray;
+  border-top: solid 1px #0000004f;
+  user-select: none;
+  display: flex;
+  align-items: center;
+  min-width: max-content;
+}
+
+.fLU_itemTitle {
+  user-select: none;
+}
+
+.fLU_item {
+  height: 40px;
+  width: calc(100% - 30px);
+  display: flex;
+  align-items: center;
+  padding: 0 10px 0 20px;
+  justify-content: space-between;
+  min-width: max-content;
+  cursor: pointer;
+  margin: 10px 0;
+  border-top: solid 1px #8080802a;
+  border-bottom: solid 1px #8080802a;
+}
+
+.fLU_item:hover {
+  background-color: #80808080;
+}
+
+.btn_TypeDelete {
+  font-size: 1em;
+  padding: 0 10px;
+  margin: 0;
+  user-select: none;
+  cursor: pointer;
+}

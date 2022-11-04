@@ -31,14 +31,14 @@ export function FilterList(props) {
                     <li className='listItem'  >
                         <span className='itemTitle' >Order</span>
                         <ul className='listInside'>
-                            <li className='itemOption' onClick={() => props.setOrder("AZ")}>A-Z</li>
-                            <li className='itemOption' onClick={() => props.setOrder("ZA")}>Z-A</li>
-                            <li className='itemOption' onClick={()=>props.setOrder("Ascending")}>Price ↗</li>
+                            <li className='itemOption' translate="no" onClick={() => props.setOrder("AZ")}>A-Z</li>
+                            <li className='itemOption' translate="no" onClick={() => props.setOrder("ZA")}>Z-A</li>
+                            <li className='itemOption'  onClick={()=>props.setOrder("Ascending")}>Price ↗</li>
                             <li className='itemOption'  onClick={()=>props.setOrder("Descending")} >Price ↘</li> 
                         </ul>
                     </li>
                     <li className='listItem'>
-                        <span className='itemTitle' >Type</span>
+                        <span className='itemTitle' >Types</span>
                         <ul className='listInside'>
                             {props.type_data.map((e, i) => <li key={i} onClick={() => !props.Tipos.includes(e) && props.Tipos.length < 2 ? props.setTipos([...props.Tipos, e]) : ""} className='itemOption'>{e[0].toUpperCase() + e.substring(1)}</li>)}
                         </ul>
