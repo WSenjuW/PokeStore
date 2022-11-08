@@ -5,8 +5,6 @@ import { BsFillBagPlusFill,BsFillXCircleFill  } from "react-icons/bs";
 export default function MenuFav(props) {
 
 
-
-
     return (
         <div
             id='menuFavBox'

@@ -73,14 +73,14 @@ export default function App() {
 
   return (
     <div className="App">
-      {Datos.length === 0 
+      {/* {Datos.length === 0 
         ?
-        <div id='PDC'><p id='pdcP'>Loading<br/>screen</p></div>      
-       
+        
         :
         <WebBox data={Datos} t_d={typeData} />
-      }
+      } */}
 
+      <div id='PDC'><p id='pdcP'>Poke<br/>Store</p><div class="loader"></div></div>      
     </div>
   );
 }
