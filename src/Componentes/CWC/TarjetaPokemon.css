@@ -1,13 +1,74 @@
+.normal {
+  background-color: #989898;
+}
+.fighting {
+  background-color: #ffa300;
+}
+.flying {
+  background-color: #96cafc;
+}
+.poison {
+  background-color: #9850ce;
+  color: #fff;
+}
+.ground {
+  background-color: #9c6633;
+}
+.rock {
+  background-color: #bbb790;
+}
+.bug {
+  background-color: #a8dd6b;
+}
+.ghost {
+  background-color: #6c4272;
+}
+.steel {
+  background-color: #6db2d4;
+}
+.fire {
+  background-color: #ff6132;
+  color: #fff;
+}
+.water {
+  background-color: #2f91ff;
+  color: #fff;
+}
+.grass {
+  background-color: #42a542;
+}
+.electric {
+  background-color: #ddd12b;
+}
+.psychic {
+  background-color: #ff607c;
+}
+.ice {
+  background-color: #44d5ff;
+}
+.dragon {
+  background-color: #6077d7;
+}
+.dark {
+  background-color: #2e2e2e;
+  color: #fff;
+}
+.fairy {
+  background-color: #cf95e0;
+}
+.unknown {
+  background-color: transparent;
+}
+.shadow {
+  background-color: #3e0168;
+}
+
 .card {
   width: 200px;
   height: 330px;
   margin: 40px 30px;
   position: relative;
   transition: all 0.3s;
-}
-
-.card:hover {
-  transform: scale(1.2);
 }
 
 .frontCard,
@@ -97,17 +158,42 @@
   color: #fff;
   border: none;
   transition: 0.16s;
+  cursor: pointer;
 }
 
 .btnFavorite:active {
   transform: scale(1.2);
 }
 
-.btnFavorite:hover {
-  color: #e3435e;
+.flipBtn {
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border-radius: 100%;
+  position: absolute;
+  bottom: 172px;
+  font-size: 2em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  left: 5px;
+  border: none;
+  background-color: transparent;
+  color: #fff;
+  transition: 0.1s;
+  cursor: pointer;
+}
+
+.flipBtn:hover {
+  color: #808080b0;
+}
+
+.flipBtn:active {
+  transform: scale(0.8);
 }
 
 .priceBox {
+  width: max-content;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -136,80 +222,16 @@
   background-color: #414141be;
   color: #fff;
   transition: 0.2s;
+  cursor: pointer;
 }
 
 .btnBag:active {
   transform: scale(1.2);
 }
 
-.btnProduct:hover {
-  background-color: #da3b26;
-  color: #f1f1f1;
-}
-
-.normal {
-  background-color: #989898;
-}
-.fighting {
-  background-color: #ffa300;
-}
-.flying {
-  background-color: #96cafc;
-}
-.poison {
-  background-color: #9850ce;
-  color: #fff;
-}
-.ground {
-  background-color: #9c6633;
-}
-.rock {
-  background-color: #bbb790;
-}
-.bug {
-  background-color: #a8dd6b;
-}
-.ghost {
-  background-color: #6c4272;
-}
-.steel {
-  background-color: #6db2d4;
-}
-.fire {
-  background-color: #ff6132;
-  color: #fff;
-}
-.water {
-  background-color: #2f91ff;
-  color: #fff;
-}
-.grass {
-  background-color: #42a542;
-}
-.electric {
-  background-color: #ddd12b;
-}
-.psychic {
-  background-color: #ff607c;
-}
-.ice {
-  background-color: #44d5ff;
-}
-.dragon {
-  background-color: #6077d7;
-}
-.dark {
-  background-color: #2e2e2e;
-  color: #fff;
-}
-.fairy {
-  background-color: #cf95e0;
-}
-.unknown {
-  background-color: transparent;
-}
-.shadow {
-  background-color: #3e0168;
+.btnBag:hover {
+  background-color: #84d86a;
+  color: #000000;
 }
 
 .pDes {
@@ -221,7 +243,6 @@
   line-height: 25px;
   user-select: none;
   font-family: Arial, Helvetica, sans-serif;
-
 }
 
 .genus {
@@ -230,7 +251,7 @@
   height: 30px;
   padding: 0 5px;
   text-align: center;
-  margin: 5px 0 0 0 ;
+  margin: 5px 0 0 0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -244,14 +265,13 @@
   width: 100%;
   color: #fff;
   display: flex;
-  /* flex-direction: column; */
   align-items: center;
   justify-content: center;
-  gap:30px;
+  gap: 30px;
   margin: 0;
 }
 
-.datos2 > li{
+.datos2 > li {
   width: max-content;
   height: max-content;
   user-select: none;
@@ -261,4 +281,75 @@
   border: solid 1px #fff;
   padding: 5px;
   border-radius: 3px;
+}
+
+.btnFlip {
+  position: absolute;
+  bottom: 0;
+  font-size: 1.7em;
+  padding: 2px;
+  margin: 0 0 10px 0;
+  color: #000;
+  background-color: #fff;
+  border: none;
+  border-radius: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: 0.1s;
+}
+
+@keyframes giroInfinito {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.btnFlip:hover {
+  animation-duration: 2s;
+  animation-name: giroInfinito;
+  animation-iteration-count: 1;
+}
+
+.btnFlip:active {
+  transform: scale(0.9);
+}
+
+@media screen and (max-width: 824px) {
+  .card {
+    margin: 2px;
+    width: 160px;
+  }
+
+  .cardName {
+    font-size: 1em;
+  }
+
+  .type {
+    font-size: 1em;
+  }
+
+  .priceBox {
+    gap: 0;
+  }
+
+  .pPrice {
+    font-size: 2em;
+  }
+
+  .pDes {
+    font-size: 1em;
+  }
+
+  .datos2 {
+    gap: 10px;
+  }
+
+  .datos2 > li {
+    font-size: 1em;
+  }
 }

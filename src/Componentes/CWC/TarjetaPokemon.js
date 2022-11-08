@@ -1,4 +1,4 @@
-import { BsFillBagPlusFill, BsFillBagCheckFill } from "react-icons/bs";
+import { BsFillBagPlusFill, BsFillBagCheckFill, BsFillInfoCircleFill, BsArrowRepeat } from "react-icons/bs";
 import { MdFavorite } from "react-icons/md";
 import "./TarjetaPokemon.css";
 import React, { useRef } from 'react';
@@ -13,7 +13,6 @@ export function TarjetaPokemon(props) {
     const efectoVolteo = () => {
         const fc = frontCard.current;
         const bc = backCard.current;
-
 
         if (fc.style.transform === "rotateY(180deg)") {
             const fc = frontCard.current;
@@ -58,7 +57,7 @@ export function TarjetaPokemon(props) {
 
 
     return (
-        <div className='card' onDoubleClick={efectoVolteo}>
+        <div className='card' >
             <div className="frontCard" ref={frontCard}>
                 <img alt='#' className='cardImg' src={props.imagen} />
                 <ul className='Datos'>
@@ -70,16 +69,13 @@ export function TarjetaPokemon(props) {
                             className='btnBag'
                             onClick={(e) => effectCarrito(e)}
                             tabIndex={-1}
-                        >
+                            >
                             {props.carInclude === "noActive"
                                 ?
                                 <BsFillBagPlusFill />
                                 :
                                 <BsFillBagCheckFill />
                             }
-
-
-
                         </button>
                     </li>
                 </ul>
@@ -88,17 +84,26 @@ export function TarjetaPokemon(props) {
                     className='btnFavorite'
                     onClick={() => effectFavorite()}
                     style={{ color: (props.favInclude === "noActive" ? "#fff" : "#e3435e") }}
-                >
+                    >
                     <MdFavorite />
                 </button>
+                <button 
+                 className="flipBtn"
+                 onClick={efectoVolteo}
+                 ><BsFillInfoCircleFill/></button>
             </div>
             <div ref={backCard} className="backCard">
-                {props.genus === undefined ? "" : <h3 className="genus">{props.genus}</h3>}
-                <p className="pDes">{props.description}</p>
+              {props.genus === undefined ? "" : <h3 className="genus">{props.genus}</h3>}
+                <p className="pDes">{props.description}</p>  
                 <ul className="datos2">
                     <li className="heightP">Height<br />{props.altura}m</li>
-                    <li>Weight<br />{props.peso}Kg</li>
+                    <li>Weight<br/>{props.peso}Kg</li>
                 </ul>
+                <button 
+                className="btnFlip" 
+                onClick={efectoVolteo}
+                >
+                <BsArrowRepeat/></button>
             </div>
         </div>
     )

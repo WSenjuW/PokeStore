@@ -37,7 +37,18 @@ export function WebBox(props) {
         justifyContent: "space-between",
         minWidth: "100vw",
         minHeight: "calc(100vh - 90px)",
-        background: "#ED4747"
+        background: "#ED4747",
+        position: "relative"
+    }
+
+
+    const estilosPanelMF = {
+        position:"fixed",
+        left: 0,
+        top:0,
+        height:"100vh",
+        width:"100vw",
+        zIndex:"100"
     }
 
     return (
@@ -55,13 +66,22 @@ export function WebBox(props) {
             {
                 menuFavoritos=== "on"
                 &&
-                <MenuFav
+                <>
+                    <MenuFav
                     favList={favoritos}
+                    carList={carrito}
+                    SetCarrito={setCarrito}
                     Datos={Datos}
                     SetFav={setFavoritos}
                     SetFMO={setMenuFavoritos}
                     FMO={menuFavoritos}
                 />
+                <span id='panelMF' 
+                style={estilosPanelMF}
+                onClick={()=>setMenuFavoritos("off")}
+                />
+                </>
+
             }
 
             <ContentWeb

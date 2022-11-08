@@ -1,20 +1,27 @@
 import { MdFavorite } from "react-icons/md";
 import { BsFillCartFill, BsSearch } from "react-icons/bs";
 import './NavTop1_0.css';
-import React, { useRef } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 
 export default function NavTop1_0(props) {
-    const btnRef = useRef();
     const inputRef = useRef();
+    const [seaInput, setSeaInput] = useState("off");
 
-    const EffectMenu = () => {
-        if (inputRef.current.style.width === "200px" && inputRef.current.value === "")
-            inputRef.current.style.width = 0
-        else{inputRef.current.style.width = "200px"; inputRef.current.focus() } 
-    };
+    useEffect(() => {
+        if (seaInput === "on") inputRef.current.style.width = '200px'
+        else inputRef.current.style.width = 0
+    }, [seaInput]);
 
 
 
+    const effectIn = () => {
+        if (seaInput === 'on' && inputRef.current.value === "")
+            setSeaInput('off')
+        else {
+            setSeaInput("on")
+            inputRef.current.focus()
+        }
+    }
 
     return (
         <nav id='navTopBox'>
@@ -28,15 +35,15 @@ export default function NavTop1_0(props) {
                     disabled={false}
                     maxLength={12}
                     autoComplete="off"
-                    onBlur={() =>
-                        inputRef.current.value === "" &&
-                        (inputRef.current.style.width = 0)
+                    onBlur={(e) =>
+                        e.target.value === ""
+                        &&
+                        setSeaInput("off")
                     }
                 />
                 <button
                     id="btnSearch"
-                    ref={btnRef}
-                    onClick={EffectMenu}
+                    onClick={effectIn}
                 >
                     <BsSearch /></button>
                 <button

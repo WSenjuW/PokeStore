@@ -1,13 +1,14 @@
 #menuFavBox {
-  position: absolute;
+  position: fixed;
   top: 84px;
-  right: 40px;
-  background-color: #f1f1f1aa;
+  margin-right: 40px;
+  right: 0;
+  background-color: #f1f1f1da;
   backdrop-filter: blur(4px);
   width: 300px;
   height: 50vh;
   min-height: 300px;
-  z-index: 100;
+  z-index: 101;
   border-radius: 5px;
   padding: 4vh 1vw;
   display: flex;
@@ -15,7 +16,6 @@
   justify-content: center;
   animation: inicio  .15s linear ;
   box-shadow: 0px 36px 89px 26px #1b1b1c91;
-  /* z-index: 30000; */
 }
 
 @keyframes inicio {
@@ -29,15 +29,19 @@
     }
 }
 
+
+
+
+
 #puntaMF {
-  background-color: #f1f1f1aa;
+  background-color: #f1f1f1da;
   backdrop-filter: blur(4px);
+  z-index: 100;
   height: 20px;
   width: 50px;
   position: absolute;
   top: -20px;
   right: calc(2vw + 15px);
-  z-index: 30;
   clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
 }
 
@@ -102,24 +106,31 @@
   width: calc(70px - 20px);
   height: clac(100% - 20px);
   padding: 10px;
-
+  user-select: none;
   object-fit: contain;
 }
 
 .btnMF {
-  width: 30px;
-  height: 30px;
-  border-radius: 5px;
-  font-size: 1.3em;
+  width: auto;
+  height: auto;
+  margin: 0 10px;
+  font-size: 2em;
+  padding: 0;
+  border-radius: 100%;
   border: none;
-  margin: 20px;
   font-weight: 600;
   transition: 0.2s;
   user-select: none;
+  color: #fff;
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
 }
 
 .btnMF:hover {
-  background-color: gray;
+  color: gray;
 }
 
 .btnMF:active {

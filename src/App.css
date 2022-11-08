@@ -6,7 +6,25 @@
 
 .App {
   width: 100vw;
-  height: auto;
+  height: 100vh;
   min-height: 100vh;
   position: relative;
+}
+
+
+#PDC{
+  width: 100%;
+  height: 100%;
+  position: relative;
+  background-color: #171790;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#pdcP{
+font-size: 3em;
+font-weight: 600;
+color: #fff;
+letter-spacing: 5px;
 }
