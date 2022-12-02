@@ -15,7 +15,7 @@ import {
 export default function App() {
   const [Datos, setDatos] = useState([]);
   const [typeData, setTypesData] = useState([]);
-  const [loadingScreen, setLoadingScreen] = useState(false);
+  const [loadingScreen, setLoadingScreen] = useState(null);
 
   useEffect(() => {
     let url = "https://pokeapi.co/api/v2/pokemon?limit=936offset=0";
@@ -80,6 +80,11 @@ export default function App() {
 
 
   }, []);
+
+  useEffect(() => {
+    Datos.length !== 0 &&
+    setLoadingScreen(false)
+  }, [Datos]);
 
 
 
