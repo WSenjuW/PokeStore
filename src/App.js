@@ -56,7 +56,7 @@ export default function App() {
     if (JSON.parse(window.localStorage.getItem("data")) !== null) setDatos(JSON.parse(window.localStorage.getItem("data")))
     else getData(url);
 
-    // La siguiente función es para obtener los datos de los tipos de Pokemones
+    // La siguiente función es para obtener los datos de los tipos de Pokemon's
     const url2 = `https://pokeapi.co/api/v2/type/`;
     const getTypeData = async (dirección) => {
       let data = await fetch(dirección);
@@ -92,7 +92,6 @@ export default function App() {
     { path: '/', name: 'Home', element: <Home data={Datos} t_d={typeData} />, nodeRef: createRef() },
     { path: '/pay', name: 'About', element: <PayScreen Datos={Datos} />, nodeRef: createRef() },
   ]
-
 
   return (
     <div className="App">

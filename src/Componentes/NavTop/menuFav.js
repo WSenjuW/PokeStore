@@ -22,7 +22,7 @@ export default function MenuFav(props) {
                                     src={e.gif === null ? e.avatar : e.gif}
                                     className="imgMF"
                                 />
-                                <p className='pItemMF'>{e.name}</p>
+                                <p className='pItemMF'>{e.name[0].toUpperCase() + e.name.substring(1)}</p>
                                 <button
                                 className='btnMF'
                                 onClick={()=>props.carrito.some(elemento => elemento.id === e.id) === false ? props.setCarrito([...props.carrito,{price:e.price,id:e.id,cantidad:1}]) : props.setCarrito([...props.carrito.filter(ele=> ele.id !== e.id)]) }

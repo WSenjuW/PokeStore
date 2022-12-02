@@ -83,9 +83,8 @@ export default function NavTop(props) {
                 {
                     props.option === false &&
                     <Link to='/pay'>
-                        <button
-                            className="btnNavTop"
-                        >
+                        <button   className="btnNavTop"  >
+                            
                             <BsFillCartFill />
                             {props.carrito.length !== 0 &&
                                 <span className="cantidad">{props.carrito.length <= 9 ? props.carrito.length : "9+"}</span>
