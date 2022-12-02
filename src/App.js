@@ -1,6 +1,6 @@
 import './App.css';
 import { Home } from './Componentes/PS/Home';
-import { LoadingScreen } from './Componentes/LS/LoadingScreen';
+import  LoadingScreen  from './Componentes/LS/LoadingScreen';
 import  PayScreen  from './Componentes/BS/PayScreen';
 import React, { useState, useEffect, createRef } from 'react';
 import {
@@ -104,7 +104,7 @@ export default function App() {
           </Routes>
         </Router>
       }
-      <LoadingScreen LS={loadingScreen} />
+      <LoadingScreen LSSwitch={loadingScreen} />
     </div>
   );
 }
