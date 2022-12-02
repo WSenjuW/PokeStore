@@ -33,8 +33,8 @@ export function FilterList(props) {
                         <ul className='listInside'>
                             <li className='itemOption' translate="no" onClick={() => props.setOrder("AZ")}>A-Z</li>
                             <li className='itemOption' translate="no" onClick={() => props.setOrder("ZA")}>Z-A</li>
-                            <li className='itemOption'  onClick={()=>props.setOrder("Ascending")}>Price ↗</li>
-                            <li className='itemOption'  onClick={()=>props.setOrder("Descending")} >Price ↘</li> 
+                            <li className='itemOption'  onClick={()=>props.setOrder("Price ↾")}>Price ↾</li>
+                            <li className='itemOption'  onClick={()=>props.setOrder("Price ⇂")} >Price ⇂</li> 
                         </ul>
                     </li>
                     <li className='listItem'>
@@ -52,6 +52,15 @@ export function FilterList(props) {
                                 <p className='fLU_itemTitle'>Type: {element[0].toUpperCase() + element.substring(1)}</p>
                                 <button id={element} className='btn_TypeDelete' onClick={(e) => props.setTipos(props.Tipos.filter((el) => el !== e.target.id))}>X</button>
                             </li>)
+                    }
+                    {
+                        props.order !== 'default' &&
+                        <li className='fLU_item' >
+                                <p className='fLU_itemTitle'>Order: {props.order[0].toUpperCase() + props.order.substring(1)}</p>
+                                <button className='btn_TypeDelete' onClick={()=>props.setOrder('default')}>X</button>
+                            </li>
+
+
                     }
                 </ul>
             </div>

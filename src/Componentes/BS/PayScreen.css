@@ -1,0 +1,188 @@
+#PSBox {
+  width: 100%;
+  height: 100vh;
+  background-color: #3145df;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+#PB::-webkit-scrollbar {
+  width: 10px;
+  height: 0;
+  background-color: #80808085;
+}
+
+#PB::-webkit-scrollbar-thumb {
+  background-color: gray;
+  border-radius: 10px;
+}
+
+#PB {
+  width: 95vw;
+  height: 70vh;
+  padding: 0;
+  margin-top: 100px;
+  background-color: #f1f1f1;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: auto;
+  position: relative;
+}
+
+.itemCar {
+  width: calc(95% - 6vw);
+  padding: 0 3vw;
+  min-height: 150px;
+  margin: 10px 0;
+  background-color: #dddddded;
+  border-radius: 3px;
+  box-shadow: #00000032 8px 7px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.infoItem {
+  display: flex;
+  height: 100%;
+  width: max-content;
+  align-items: center;
+  justify-content: center;
+  gap: 1vw;
+  flex-wrap: wrap;
+}
+
+.imgItem {
+  height: 100%;
+  height: 100px;
+  object-fit: contain;
+  user-select: none;
+}
+
+.titleItem {
+  font-size: 1.5em;
+  font-weight: 400;
+  letter-spacing: 3px;
+}
+
+.PPS{
+  font-size: 1.5em;
+  margin: 0;
+}
+
+
+.NumItems {
+  height: 50px;
+  width: max-content;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5em;
+  gap: 10px;
+  user-select: none;
+}
+
+.inpNI {
+  width: 55px;
+  height: 30px;
+  display: flex;
+  text-align: center;
+  font-size: 1em;
+  border: 0;
+  border-radius: 3px;
+}
+
+.inpNI:focus {
+  outline: 0;
+}
+
+
+
+.infoItem2 {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 5vw;
+}
+
+.btnDeletePS {
+  width: 50px;
+  height: 50px;
+  font-size: 2.2em;
+  border-radius: 100%;
+  border: 0;
+  color: #000;
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.1s;
+  cursor: pointer;
+}
+
+.btnDeletePS:active {
+  transform: scale(0.9);
+}
+
+#msjContent {
+  font-size: 1.2em;
+  font-weight: 500;
+  margin-top: 40vh;
+  text-align: center;
+}
+
+#PSB2 {
+  width: calc(95% - 6vw );
+  padding: 0 3vw;
+  height: 70px;
+  background-color: #f1f1f1;
+  border-radius: 3px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+}
+
+#btnBuy{
+  width: 100px;
+  height: 45px;
+  font-size: 1.4em;
+  background-color: #cdcdcdef;
+  transition: .1s;
+  user-select: none;
+}
+
+#btnBuy:hover{
+  background-color: #579640;
+  color: white;
+  border: solid 1px #fff;
+}
+#btnBuy:active{
+  transform: scale(.9);
+}
+
+#infoBuy{
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 5vw;
+  height: 100%;
+}
+
+
+#PIB{
+  height: 100%;
+  width: max-content;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  user-select: none;
+  font-size: 1.4em;
+  line-height: 30px;
+}

@@ -1,14 +1,25 @@
-import React, { useState, useEffect } from 'react';
-import { WebBox } from './Componentes/WebBox';
 import './App.css';
+import { Home } from './Componentes/PS/Home';
+import { LoadingScreen } from './Componentes/LS/LoadingScreen';
+import  PayScreen  from './Componentes/BS/PayScreen';
+import React, { useState, useEffect, createRef } from 'react';
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route
+} from "react-router-dom";
+
+
 
 
 export default function App() {
   const [Datos, setDatos] = useState([]);
   const [typeData, setTypesData] = useState([]);
+  const [loadingScreen, setLoadingScreen] = useState(false);
 
   useEffect(() => {
     let url = "https://pokeapi.co/api/v2/pokemon?limit=936offset=0";
+    // En la siguiente funcion obtendermos los datos de los pokemones
     const getData = async (url) => {
       let Pt = await fetch(url);
       let Data = await Pt.json()
@@ -31,7 +42,7 @@ export default function App() {
             weight: jsDt.weight / 10,
             genus: (infoJs.genera.filter((e) => e.language.name === "en")[0].genus),
             description: (infoJs.flavor_text_entries.filter(e => e.language.name === 'en')[0].flavor_text),
-            price: ((jsDt.height / 10) * 15),
+            price: (Math.round(jsDt.height * 3)),
           }
           return item
         })
@@ -42,9 +53,10 @@ export default function App() {
 
 
 
-    if (JSON.parse(window.localStorage.getItem("data")) !== null)setDatos(JSON.parse(window.localStorage.getItem("data")))
-    else  getData(url);
+    if (JSON.parse(window.localStorage.getItem("data")) !== null) setDatos(JSON.parse(window.localStorage.getItem("data")))
+    else getData(url);
 
+    // La siguiente función es para obtener los datos de los tipos de Pokemones
     const url2 = `https://pokeapi.co/api/v2/type/`;
     const getTypeData = async (dirección) => {
       let data = await fetch(dirección);
@@ -56,9 +68,9 @@ export default function App() {
       window.localStorage.setItem("tyData", JSON.stringify(dataList));
     }
     if (window.localStorage.getItem("tyData" !== null))
-     setTypesData(JSON.parse(window.localStorage.getItem("tyData")))
+      setTypesData(JSON.parse(window.localStorage.getItem("tyData")))
     else getTypeData(url2);
-    
+
 
 
     let LSFav = window.localStorage.getItem("Favoritos")
@@ -71,15 +83,24 @@ export default function App() {
 
 
 
+  const routes = [
+    { path: '/', name: 'Home', element: <Home data={Datos} t_d={typeData} />, nodeRef: createRef() },
+    { path: '/pay', name: 'About', element: <PayScreen Datos={Datos} />, nodeRef: createRef() },
+  ]
+
+
   return (
     <div className="App">
-      {Datos.length === 0 
-        ?   
-        <div id='PDC'><p id='pdcP'>Poke<br/>Store</p><div class="loader"></div></div>      
-        :
-        <WebBox data={Datos} t_d={typeData} />
+      {Datos.length !== 0
+        &&
+        <Router>
+          <Routes>
+            {routes.map((element) => 
+            <Route key={element.name} element={element.element} path={element.path} />)}
+          </Routes>
+        </Router>
       }
-
+      <LoadingScreen LS={loadingScreen} />
     </div>
   );
 }

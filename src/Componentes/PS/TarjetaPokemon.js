@@ -29,17 +29,15 @@ export function TarjetaPokemon(props) {
         let LSData = await window.localStorage.getItem("Carrito");
         let Data = await JSON.parse(LSData);
 
-        if (!Data.includes(props.i_d)) {
-            Data.push(props.i_d);
+        if (Data.some(e=> e.id === props.i_d) === false) {
+            let item = {price:props.precio,id:props.i_d,cantidad:1}
+            Data.push(item);
             props.setCarrito(Data);
         } else {
-            let Data2 = Data.filter((e) => e !== props.i_d)
+            let Data2 = Data.filter((e) => e.id !== props.i_d)
             props.setCarrito(Data2);
         }
     }
-
-
-
 
 
     async function effectFavorite(e) {

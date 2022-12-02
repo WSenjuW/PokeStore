@@ -31,19 +31,19 @@ export function ContentWeb(props) {
 
     const orderFunction = () => {
         switch (order) {
-            case "default": Tipos.length === 0 ? setPokeData(props.data) : tiposfunction()
+            case "default":{ setPokeData([...pokeData.sort((a, b) => a.id < b.id ? -1 : 1)]) }
                 break;
             case "AZ": { setPokeData([...pokeData.sort((a, b) => b.name > a.name ? -1 : 1)]) }
                 break;
             case "ZA": { setPokeData([...pokeData.sort((a, b) => b.name > a.name ? -1 : 1).reverse()]) }
                 break;
-            case "Ascending": { setPokeData([...pokeData.sort((a, b) => a.price < b.price ? -1 : 1)]) };
+            case "Price ↾": { setPokeData([...pokeData.sort((a, b) => a.price < b.price ? -1 : 1)]) };
                 break;
-            case "Descending": { setPokeData([...pokeData.sort((a, b) => a.price < b.price ? -1 : 1).reverse()]) }
+            case "Price ⇂": { setPokeData([...pokeData.sort((a, b) => a.price < b.price ? -1 : 1).reverse()]) }
                 break;
         }
     }
-    const tiposfunction = () => {
+    const tiposFunction = () => {
         switch (Tipos.length) {
             case 0: setPokeData(props.data);
                 break;
@@ -64,7 +64,7 @@ export function ContentWeb(props) {
 
 
     useEffect(() => {
-        tiposfunction()
+        tiposFunction()
     }, [Tipos]);
 
 
@@ -91,6 +91,7 @@ export function ContentWeb(props) {
                 type_data={props.type_data}
                 Tipos={Tipos}
                 order={order}
+                setOrder={setOrder}
 
             />
             <section id="catalogo" >
@@ -113,7 +114,7 @@ export function ContentWeb(props) {
                                 SetFav={props.SetFav}
                                 favInclude={props.fav.includes(el.id) ? "active" : "noActive"}
                                 setCarrito={props.setCarrito}
-                                carInclude={props.carrito.includes(el.id) ? "active" : "noActive"}
+                                carInclude={props.carrito.every(e=> e.id !== el.id ) ?"noActive": "active"  }
                             />)
                         :
                         <p id='Msj_Productos'>no results found</p>

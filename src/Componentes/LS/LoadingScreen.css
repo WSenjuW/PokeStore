@@ -1,0 +1,101 @@
+#P1 {
+  width: 100%;
+  height: 40vh;
+  background-color: #2d4199;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  margin: 0;
+  z-index: 1200;
+  position: absolute;
+  top: 0;
+}
+
+@keyframes LeftToRight {
+  from {
+    transform: translateX(-100vw);
+  }
+  to {
+    transform: translateX(0vw);
+    border: none;
+  }
+}
+
+@keyframes RightToLeft {
+  from {
+    transform: translateX(100vw);
+  }
+  to {
+    transform: translateX(0vw);
+  }
+}
+
+
+
+#P2 {
+  background-color: #2d4199;
+  width: 100%;
+  height: 20vh;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  z-index: 200;
+  position: absolute;
+  top: 40%;
+}
+
+#P3 {
+  background-color: #2d4199;
+  width: 100%;
+  height: 40vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  bottom: 0;
+  z-index: 200;
+}
+
+.LSP1,
+.LSP2 {
+  font-size: 4em;
+  font-weight: 300;
+  color: #fff;
+  letter-spacing: 5px;
+  user-select: none;
+  margin: 30px 0;
+}
+
+.LSP1 {
+  margin-right: 50px;
+}
+
+.LSP2 {
+  margin-left: 50px;
+}
+
+
+
+
+
+.loader span {
+  font-size: 2em;
+  font-family: "Courier New", Courier, monospace;
+  font-weight: 600;
+  animation: blur 3s linear infinite;
+  line-height: 20px;
+  transition: all 0.5s;
+  letter-spacing: 0.2em;
+  color: red;
+}
+
+@keyframes blur {
+  0%,
+  90% {
+    filter: blur(0);
+  }
+
+  50% {
+    filter: blur(10px);
+  }
+}
