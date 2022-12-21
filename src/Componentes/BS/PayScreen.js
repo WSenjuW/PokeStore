@@ -8,7 +8,6 @@ import { cartFavContext} from '../../Contextos/Context';
 
 
 export default function PayScreen(props) {
-    // const Data = useContext(datosContext);
     const {carrito,dispatchCartFav} = useContext(cartFavContext);
     const [total, setTotal] = useState({TotalPrecio:0,TotalProductos:0});
 
