@@ -69,6 +69,20 @@
   margin: 40px 30px;
   position: relative;
   transition: all 0.3s;
+  animation: animacionInicio both 1s ;
+}
+
+
+@keyframes animacionInicio{
+ from{
+    opacity: 0;
+    transform: translateX(100px) translateY(-50px);
+ } 
+ to{
+  opacity: 1;
+  transform: translateX(0) translateY(0);
+
+ }
 }
 
 .frontCard,
@@ -126,6 +140,7 @@
   user-select: none;
   font-size: 1.2em;
   letter-spacing: 1px;
+  text-align: center;
 }
 
 .type {

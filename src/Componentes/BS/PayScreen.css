@@ -33,17 +33,29 @@
   position: relative;
 }
 
+@keyframes inicio{
+  from{
+    opacity: 0;
+    transform: translateX(100px);    
+  }
+  to{
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
 .itemCar {
   width: calc(95% - 6vw);
   padding: 0 3vw;
   min-height: 150px;
   margin: 10px 0;
-  background-color: #dddddded;
+  background-color: #5e7ba5ed;
   border-radius: 3px;
-  box-shadow: #00000032 8px 7px;
+  box-shadow: #00000025 8px 7px;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  animation: inicio .5s both ;
 }
 
 .infoItem {
@@ -67,6 +79,7 @@
   font-size: 1.5em;
   font-weight: 400;
   letter-spacing: 3px;
+  margin: 0;
 }
 
 .PPS{
@@ -84,6 +97,7 @@
   font-size: 1.5em;
   gap: 10px;
   user-select: none;
+  text-align: center;
 }
 
 .inpNI {
@@ -104,6 +118,8 @@
 
 .infoItem2 {
   display: flex;
+  flex-direction: row;
+  align-items: center;
   flex-wrap: nowrap;
   gap: 5vw;
 }
@@ -146,6 +162,15 @@
   justify-content: space-around;
 }
 
+#btnBuy2{
+  width: 100px;
+  height: 45px;
+  font-size: 1.4em;
+  background-color: #cdcdcdef;
+  transition: .1s;
+  user-select: none;
+}
+
 #btnBuy{
   width: 100px;
   height: 45px;
@@ -185,4 +210,36 @@
   user-select: none;
   font-size: 1.4em;
   line-height: 30px;
+}
+
+
+@media screen and (max-width: 630px) {
+
+.itemCar{
+  padding: 0 5px;
+  overflow: hidden;
+}
+
+.infoItem{
+  flex-direction: column;
+  align-items: center;
+  /* background-color: red; */
+}
+.titleItem{
+  font-size: 1.1em;
+}
+
+.PPS{
+  font-size: 1.1em;
+}
+
+.NumItems{
+  font-size: 1.1em;
+}
+
+
+
+#PIB{
+  font-size: 1.1em;
+}
 }

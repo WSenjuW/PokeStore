@@ -1,110 +1,101 @@
+import React, { useState, useEffect, createRef, useContext } from 'react';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import LoadingScreen from './Componentes/LS/LoadingScreen';
+import PayScreen from './Componentes/BS/PayScreen';
+import { Home } from './Componentes/HS/Home';
 import './App.css';
-import { Home } from './Componentes/PS/Home';
-import  LoadingScreen  from './Componentes/LS/LoadingScreen';
-import  PayScreen  from './Componentes/BS/PayScreen';
-import React, { useState, useEffect, createRef } from 'react';
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route
-} from "react-router-dom";
+import { cartFavContext, datosContext } from './Contextos/Context';
 
 
-
+const routes = [
+  { path: '/', name: 'Home', element: <Home />, nodeRef: createRef() },
+  { path: '/pay', name: 'About', element: <PayScreen />, nodeRef: createRef() },
+]
 
 export default function App() {
-  const [Datos, setDatos] = useState([]);
-  const [typeData, setTypesData] = useState([]);
   const [loadingScreen, setLoadingScreen] = useState(null);
+  const Datos = useContext(datosContext);
+  const cartFav = useContext(cartFavContext);
 
   useEffect(() => {
-    let url = "https://pokeapi.co/api/v2/pokemon?limit=936offset=0";
-    // En la siguiente funcion obtendermos los datos de los pokemones
+    // // La siguiente función es para obtener los datos de los tipos de Pokemon's
+    const getTypeData = async (url) => {
+      let Pt = await fetch(`https://pokeapi.co/api/v2/type/`);
+      let Data = await Pt.json();
+      let dataList = await Promise.all(Data.results.map(e => e.name));
+      Datos.dispatchDatos({ type: 'ADD_TIPOS_DATOS', data: dataList })
+    }
+
+
+    // En la siguiente función obtendremos los datos de los Pokemon's
     const getData = async (url) => {
-      let Pt = await fetch(url);
-      let Data = await Pt.json()
+      let pt0 = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=100000&offset=0`);
+      let data = await pt0.json()
 
-      let dataList = await Promise.all(
-        Data.results.map(async (el) => {
+      let valueIter = Math.ceil(data.count / 11);
 
-          let Data = await fetch(el.url).catch();
-          let jsDt = await Data.json();
-          let info = await fetch(jsDt.species.url).catch();
-          let infoJs = await info.json();
+      let Url;
+      let info = [];
+      let Index = undefined;
+      for (let i = 0; i < (data.count / valueIter); i++) {
+        let Pt = await (i === 0 ? fetch(`https://pokeapi.co/api/v2/pokemon?limit=${valueIter}&offset=0`) : fetch(Url));
+        let Data = await Pt.json();
+        Url = Data.next
 
-          let item = {
-            name: jsDt.name,
-            id: jsDt.id,
-            avatar: jsDt.sprites.other['official-artwork'].front_default,
-            gif: jsDt.sprites.versions['generation-v']['black-white'].animated.front_default,
-            type: (jsDt.types.map(e => e.type.name)),
-            height: jsDt.height / 10,
-            weight: jsDt.weight / 10,
-            genus: (infoJs.genera.filter((e) => e.language.name === "en")[0].genus),
-            description: (infoJs.flavor_text_entries.filter(e => e.language.name === 'en')[0].flavor_text),
-            price: (Math.round(jsDt.height * 3)),
-          }
-          return item
-        })
-      )
-      setDatos(dataList);
-      window.localStorage.setItem("data", JSON.stringify(dataList));
+        let dataList = await Promise.all(
+          Data.results.map(async (el, index) => {
+
+            let Data = await fetch(el.url);
+            let jsDt = await Data.json();
+
+            let item = {
+              name: el.name,
+              id: jsDt.id,
+              avatar: jsDt.sprites.other['official-artwork'].front_default,
+              gif: jsDt.sprites.versions['generation-v']['black-white'].animated.front_default,
+              type: (jsDt.types.map(e => e.type.name)),
+              height: jsDt.height / 10,
+              weight: jsDt.weight / 10,
+              price: (Math.round(jsDt.height * 3)),
+            }
+            return item
+          })
+        )
+        info = [...info, ...dataList]
+        Index = i;
+        Datos.dispatchDatos({ type: 'ADD_DATOS', data: info, index: Index, maxIndex: (Math.floor(data.count / valueIter)) })
+      }
     }
 
-
-
-    if (JSON.parse(window.localStorage.getItem("data")) !== null) setDatos(JSON.parse(window.localStorage.getItem("data")))
-    else getData(url);
-
-    // La siguiente función es para obtener los datos de los tipos de Pokemon's
-    const url2 = `https://pokeapi.co/api/v2/type/`;
-    const getTypeData = async (dirección) => {
-      let data = await fetch(dirección);
-      let jsdata = await data.json();
-      let dataList = await Promise.all(jsdata.results.map(e => {
-        return e.name
-      }));
-      setTypesData(dataList)
-      window.localStorage.setItem("tyData", JSON.stringify(dataList));
+    if (window.localStorage.getItem('datos') === null ) {   
+       getTypeData(); getData()
+       }
+    else {
+      let LS = JSON.parse(window.localStorage.getItem('datos'));
+      let LS2 = JSON.parse(window.localStorage.getItem('cartFav'));
+      Datos.dispatchDatos({ type: 'LS_DATOS', item: LS });
+      if (LS2 !== null)  cartFav.dispatchCartFav({type:'LS_CARTFAV',item:LS2})
     }
-    if (window.localStorage.getItem("tyData" !== null))
-      setTypesData(JSON.parse(window.localStorage.getItem("tyData")))
-    else getTypeData(url2);
-
-
-
-    let LSFav = window.localStorage.getItem("Favoritos")
-    if (LSFav === null) window.localStorage.setItem("Favoritos", JSON.stringify([]));
-    let LSCar = window.localStorage.getItem("Carrito")
-    if (LSCar === null) window.localStorage.setItem("Carrito", JSON.stringify([]));
 
 
   }, []);
 
-  useEffect(() => {
-    Datos.length !== 0 &&
-    setLoadingScreen(false)
-  }, [Datos]);
-
-
-
-  const routes = [
-    { path: '/', name: 'Home', element: <Home data={Datos} t_d={typeData} />, nodeRef: createRef() },
-    { path: '/pay', name: 'About', element: <PayScreen Datos={Datos} />, nodeRef: createRef() },
-  ]
+  useEffect(() => { if (Datos.progreso === Datos.progresoFinal) setLoadingScreen(false) }, [Datos]);
 
   return (
+
+
     <div className="App">
-      {Datos.length !== 0
-        &&
+      {Datos.progreso === Datos.progresoFinal &&
         <Router>
           <Routes>
-            {routes.map((element) => 
-            <Route key={element.name} element={element.element} path={element.path} />)}
+            {routes.map((element) =>
+              <Route key={element.name} element={element.element} path={element.path} />)}
           </Routes>
-        </Router>
-      }
+        </Router>}
       <LoadingScreen LSSwitch={loadingScreen} />
     </div>
+
+
   );
 }
