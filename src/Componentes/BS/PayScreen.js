@@ -2,13 +2,13 @@ import './PayScreen.css';
 import NavTop from '../NavTop/NavTop1_0';
 import React, { useState, useContext, useEffect } from 'react';
 import { BsFillBagXFill } from 'react-icons/bs';
-import { cartFavContext, datosContext } from '../../Contextos/Context';
+import { cartFavContext} from '../../Contextos/Context';
 
 
 
 
 export default function PayScreen(props) {
-    const Data = useContext(datosContext);
+    // const Data = useContext(datosContext);
     const {carrito,dispatchCartFav} = useContext(cartFavContext);
     const [total, setTotal] = useState({TotalPrecio:0,TotalProductos:0});
 
@@ -35,7 +35,7 @@ export default function PayScreen(props) {
                         &&
                         <div key={e.id} className='itemCar'>
                             <section className='infoItem'>
-                                <img className='imgItem' src={e.avatar} />
+                                <img className='imgItem' alt={e.nombre} src={e.avatar} />
                                 <h2 className='titleItem'>{e.nombre[0].toUpperCase() + e.nombre.slice(1)}</h2>
                             </section>
                             <div className='infoItem2'>
@@ -47,7 +47,7 @@ export default function PayScreen(props) {
                                         type='number'
                                         min={1}
                                         max={100}
-                                        onBlur={(el) => el.target.value === '' || el.target.value == 0 ? (el.target.value = 1) : ""}
+                                        onBlur={(el) => el.target.value === '' || el.target.value === 0 ? (el.target.value = 1) : ""}
                                         onChange={(element)=>{
                                             dispatchCartFav({ type: 'UPDATE_ITEM_CARRITO', item: {...e,cantidad:parseInt(element.target.value)}})
                                         }}
