@@ -9,6 +9,7 @@ import { cartFavContext, datosContext } from '../../Contextos/Context';
 
 
 const reducer = (state, action) => {
+
     switch (action.type) {
         case 'TYPE_ITEM': {
             if (!state.types.includes(action.item) && state.types.length <= 1) return { ...state, types: [...state.types, action.item] }
@@ -19,9 +20,10 @@ const reducer = (state, action) => {
 
             break;
         case 'ORDER_ITEM': return { ...state, order: action.item }
-        default: return {...state,types: [] }
+        default: return { ...state, types: [] }
             break;
-    }
+    };
+
 }
 
 
@@ -40,26 +42,28 @@ export function Home(props) {
         let arr;
         let arr2;
         switch (filtros.types.length) {
-            case 1: arr = datos.filter(e => e.type.includes(filtros.types[0]))
+            case 0: arr = datos;
                 break;
-            case 2: arr = datos.filter(e => e.type.includes(filtros.types[0]) && e.type.includes(filtros.types[1]))
+            case 1: arr = datos.filter(e => e.type.includes(filtros.types[0]));
                 break;
-            default: arr = pokeData;
+            case 2: arr = datos.filter(e => e.type.includes(filtros.types[0]) && e.type.includes(filtros.types[1]));
                 break;
         }
 
+        // console.log(arr);
+
         switch (filtros.order) {
-            case 'A-Z': arr2 = arr.sort((a, b) => a.name > b.name ? 1 : -1)
+            case 'A-Z': arr2 = arr.sort((a, b) => a.name > b.name ? 1 : -1);
                 break;
-            case 'Z-A': arr2 = arr.sort((a, b) => a.name < b.name ? 1 : -1)
+            case 'Z-A': arr2 = arr.sort((a, b) => a.name < b.name ? 1 : -1);
                 break;
-            case 'Price ↾': arr2 = arr.sort((a, b) => a.price - b.price)
+            case 'Price ↾': arr2 = arr.sort((a, b) => a.price - b.price);
                 break;
-            case 'Price ⇂': arr2 = arr.sort((a, b) => b.price - a.price)
+            case 'Price ⇂': arr2 = arr.sort((a, b) => b.price - a.price);
                 break;
         }
-        if (filtros.order === undefined) setPokeData([...arr.sort((a, b) => a.id < b.id ? -1 : 1)])
-        else setPokeData([...arr2])
+        if (filtros.order === undefined) setPokeData(arr);
+        else setPokeData([...arr2]);
 
     }, [filtros]);
 

@@ -1,13 +1,14 @@
 import { useContext } from "react";
 import { BsFillBagPlusFill, BsFillBagCheckFill, BsFillInfoCircleFill } from "react-icons/bs";
 import { MdFavorite } from "react-icons/md";
-import { cartFavContext } from "../../Contextos/Context";
+import { cartFavContext,  productoContext } from "../../Contextos/Context";
 import "./TarjetaPokemon.css";
 
 
 
 export function TarjetaPokemon(props) {
     const {dispatchCartFav} = useContext(cartFavContext);
+    const {setPView} = useContext(productoContext)
 
     return (
         <div className='card' >
@@ -42,6 +43,7 @@ export function TarjetaPokemon(props) {
                 </button>
                 <button
                     className="flipBtn"
+                    onClick={()=> setPView(props.ELEMENT.id)}
                 ><BsFillInfoCircleFill /></button>
             </div>
         </div>

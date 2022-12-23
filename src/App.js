@@ -4,7 +4,8 @@ import LoadingScreen from './Componentes/LS/LoadingScreen';
 import PayScreen from './Componentes/BS/PayScreen';
 import { Home } from './Componentes/HS/Home';
 import './App.css';
-import { cartFavContext, datosContext } from './Contextos/Context';
+import { cartFavContext, datosContext, productoContext } from './Contextos/Context';
+import PView from './pView/pView';
 
 
 const routes = [
@@ -16,6 +17,9 @@ export default function App() {
   const [loadingScreen, setLoadingScreen] = useState(null);
   const Datos = useContext(datosContext);
   const cartFav = useContext(cartFavContext);
+  const { pView } = useContext(productoContext);
+
+
 
   useEffect(() => {
     // // La siguiente función es para obtener los datos de los tipos de Pokemon's
@@ -48,6 +52,7 @@ export default function App() {
             let Data = await fetch(el.url);
             let jsDt = await Data.json();
 
+
             let item = {
               name: el.name,
               id: jsDt.id,
@@ -57,6 +62,8 @@ export default function App() {
               height: jsDt.height / 10,
               weight: jsDt.weight / 10,
               price: (Math.round(jsDt.height * 3)),
+              description: jsDt.species.url,
+              stats: jsDt.stats
             }
             return item
           })
@@ -67,20 +74,22 @@ export default function App() {
       }
     }
 
-    if (window.localStorage.getItem('datos') === null ) {   
-       getTypeData(); getData()
-       }
+    if (window.localStorage.getItem('datos') === null) {
+      getTypeData(); getData()
+    }
     else {
       let LS = JSON.parse(window.localStorage.getItem('datos'));
       let LS2 = JSON.parse(window.localStorage.getItem('cartFav'));
       Datos.dispatchDatos({ type: 'LS_DATOS', item: LS });
-      if (LS2 !== null)  cartFav.dispatchCartFav({type:'LS_CARTFAV',item:LS2})
+      if (LS2 !== null) cartFav.dispatchCartFav({ type: 'LS_CARTFAV', item: LS2 })
     }
 
 
   }, []);
 
   useEffect(() => { if (Datos.progreso === Datos.progresoFinal) setLoadingScreen(false) }, [Datos]);
+
+
 
   return (
 
@@ -94,6 +103,10 @@ export default function App() {
           </Routes>
         </Router>}
       <LoadingScreen LSSwitch={loadingScreen} />
+      {
+        pView !== undefined &&
+        Datos.datos.filter((el) => el.id === pView).map((e) => <PView key={e.id.toString()} el={e} />  )
+      }
     </div>
 
 

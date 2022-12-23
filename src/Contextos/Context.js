@@ -1,7 +1,8 @@
-import React, { useReducer, useEffect } from 'react';
+import React, { useReducer, useEffect,useState } from 'react';
 
 const datosContext = React.createContext();
 const cartFavContext = React.createContext();
+const productoContext = React.createContext();
 
 const initialStateCartFav = {
   carrito: [],
@@ -52,6 +53,7 @@ const initialStateDatos = {
 const AppProvider = ({ children }) => {
   const [Datos, dispatchDatos] = useReducer(reducerDatos, initialStateDatos);
   const [cartFav, dispatchCartFav] = useReducer(reducerCartFav, initialStateCartFav);
+  const [pView, setPView] = useState(undefined);
 
 
   useEffect(() => {
@@ -65,7 +67,9 @@ const AppProvider = ({ children }) => {
   return (
     <datosContext.Provider value={{ ...Datos, dispatchDatos }}>
       <cartFavContext.Provider value={{ ...cartFav, dispatchCartFav }}>
+        <productoContext.Provider value={{pView,setPView}}>
         {children}
+        </productoContext.Provider>
       </cartFavContext.Provider>
     </datosContext.Provider>
   )
@@ -74,5 +78,6 @@ const AppProvider = ({ children }) => {
 export {
   datosContext,
   cartFavContext,
+  productoContext,
   AppProvider
 }

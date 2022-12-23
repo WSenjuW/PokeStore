@@ -35,7 +35,7 @@ export default function NavTop(props) {
                             maxLength={12}
                             autoComplete="off"
                             style={{ width: (inputSwitch === false ? '0' : '200px') }}
-                            onBlur={() => setInputSwitch(false)}
+                            onBlur={(e) => e.target.value === "" && setInputSwitch(false)}
                         />
                         <button id="btnSearch" onClick={() => effectInput()}>
                             <BsSearch />

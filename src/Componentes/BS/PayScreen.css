@@ -66,6 +66,7 @@
   justify-content: center;
   gap: 1vw;
   flex-wrap: wrap;
+  cursor: pointer;
 }
 
 .imgItem {
@@ -80,6 +81,7 @@
   font-weight: 400;
   letter-spacing: 3px;
   margin: 0;
+  user-select: none;
 }
 
 .PPS{

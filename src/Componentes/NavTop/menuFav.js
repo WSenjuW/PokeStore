@@ -1,12 +1,14 @@
 import './menuFav.css';
 import { BsFillBagPlusFill,BsFillXCircleFill, BsFillBagCheckFill  } from "react-icons/bs";
 import { useContext } from 'react';
-import { datosContext, cartFavContext } from '../../Contextos/Context';
+import { datosContext, cartFavContext, productoContext } from '../../Contextos/Context';
 
 
 export default function MenuFav(props) {
  const {datos} = useContext(datosContext);
  const {carrito,favoritos, dispatchCartFav} = useContext(cartFavContext);
+ const { setPView} = useContext(productoContext);
+
 
 
     return (
@@ -23,8 +25,12 @@ export default function MenuFav(props) {
                                     alt={"img " + e.name}
                                     src={e.gif === null ? e.avatar : e.gif}
                                     className="imgMF"
+                                    onClick={()=> setPView(e.id)}
                                 />
-                                <p className='pItemMF'>{e.name[0].toUpperCase() + e.name.substring(1)}</p>
+                                <p 
+                                className='pItemMF'
+                                onClick={()=> setPView(e.id)}
+                                >{e.name[0].toUpperCase() + e.name.substring(1)}</p>
                                 <button
                                 className='btnMF'
                                 onClick={()=>dispatchCartFav({ type: 'ITEM_CARRITO', item: { id: e.id, precio: e.price,avatar:e.avatar,nombre:e.name , cantidad: 1 } })}
