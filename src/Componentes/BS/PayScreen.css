@@ -6,6 +6,9 @@
   flex-direction: column;
   align-items: center;
   gap: 20px;
+  position: absolute;
+  top: 0;
+  margin: auto;
 }
 
 #PB::-webkit-scrollbar {

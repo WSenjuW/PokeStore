@@ -10,5 +10,8 @@
   position: relative;
   background-color: #ed4747;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  
 }
 
