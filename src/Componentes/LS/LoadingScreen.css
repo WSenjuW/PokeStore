@@ -1,79 +1,45 @@
-#P1 {
+#loaderBox {
   width: 100%;
-  height: 40vh;
-  background-color: #2d4199;
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  margin: 0;
-  z-index: 1200;
+  height: 100%;
   position: absolute;
   top: 0;
-}
-
-@keyframes LeftToRight {
-  from {
-    transform: translateX(-100vw);
-  }
-  to {
-    transform: translateX(0vw);
-    border: none;
-  }
-}
-
-@keyframes RightToLeft {
-  from {
-    transform: translateX(100vw);
-  }
-  to {
-    transform: translateX(0vw);
-  }
-}
-
-
-
-#P2 {
-  background-color: #2d4199;
-  width: 100%;
-  height: 20vh;
+  left: 0;
+  z-index: -10;
   display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  z-index: 200;
-  position: absolute;
-  top: 40%;
+  flex-direction: column;
+  align-items: center;
 }
 
-#P3 {
-  background-color: #2d4199;
+.part {
   width: 100%;
-  height: 40vh;
+  height: 10%;
+  background-color: #344983;
+  z-index: 1000;
+  /* border: solid 1px #000; */
   display: flex;
   align-items: center;
   justify-content: center;
-  position: absolute;
-  bottom: 0;
-  z-index: 200;
+  margin: 0;
+  padding: 0;
 }
 
-.LSP1,
-.LSP2 {
-  font-size: 4em;
-  font-weight: 300;
-  color: #fff;
-  letter-spacing: 5px;
-  user-select: none;
-  margin: 30px 0;
+.partP1,
+.partP2 {
+  font-size: 6rem;
+  color: white;
+  margin: 0;
+  font-weight: 100;
 }
 
-.LSP1 {
-  margin-right: 50px;
+.partP1 {
+  margin-right: 25vw;
+  align-self: flex-end;
 }
 
-.LSP2 {
-  margin-left: 50px;
+.partP2 {
+  margin-left: 25vw;
+  align-self: flex-end;
 }
-
 
 .loader {
   height: 5px;
@@ -86,7 +52,7 @@
   top: 30px;
   height: 7px;
   width: 7px;
-  background: #af3838;
+  background: #ffffff;
   border-radius: 50%;
   position: relative;
 }
@@ -148,26 +114,52 @@
   animation-delay: 0.9s;
 }
 
-
-
-
-.progresoBar{
-  background-color: #fff;
-  width: 30vw;
-  height: 1vh;
-  position: absolute;
-  margin:  0 auto;
-  bottom: 30vh;
+#barLoader {
+  width: 50%;
+  height: 10px;
+  min-width: 250px;
+  background-color: #ffffff42;
   border-radius: 25px;
+  color: #fff;
+  position: relative;
   overflow: hidden;
 }
 
-
-.PBar{
+#barLoaderContent {
+  width: 0;
   height: 100%;
-  background-color: #af3838;
   position: absolute;
+  top: 0;
   left: 0;
-  border-radius: 25px;
-  transition: .3s;
+  background-color: #fff;
+  border-radius: 15px;
+  transition: .2s;
+}
+
+
+@media screen and (min-width: 375px) {
+
+  .partP1 {
+    margin-right: 100px;
+    align-self: flex-end;
+  }
+  
+  .partP2 {
+    margin-left: 100px;
+    align-self: flex-end;
+  }
+}
+
+
+@media screen and (max-height: 737px) {
+
+  .partP1 {
+    margin-right: 200px;
+    align-self: flex-end;
+  }
+  
+  .partP2 {
+    margin-left:200px;
+    align-self: flex-end;
+  }
 }

@@ -3,57 +3,62 @@ import React, { useRef, useEffect, useContext } from 'react';
 import { datosContext } from '../../Contextos/Context';
 
 export default function LoadingScreen(props) {
-    const Data = useContext(datosContext)
+    const { progreso } = useContext(datosContext)
 
-    const P1 = useRef();
-    const P2 = useRef();
-    const P3 = useRef();
+    const ref1 = useRef();
+
+
+
 
 
     useEffect(() => {
         const leftToRight = [{ transform: 'translateX(-100vw)' }, { transform: 'translateX(0vw)' }];
         const rightToLeft = [{ transform: 'translateX(100vw)' }, { transform: 'translateX(0vw)' }];
 
+        const listaRef = [...ref1.current.children];
+        if (props.LSSwitch === false) 
+        listaRef.forEach((e, i) => 
+         e.animate( (i%2 == 0 ? rightToLeft :leftToRight ) , { duration: 200, iterations: 1, fill: 'both', direction: 'reverse', delay:(Math.floor((Math.random() * ( 7 - 3 + 1)) + 3)) * 100}
+         ));
 
-        if (props.LSSwitch === true) {
-            P1.current.animate(leftToRight, { duration: 200, iterations: 1, fill: 'both', delay: 700 })
-            P2.current.animate(rightToLeft, { duration: 200, iterations: 1, fill: 'both', delay: 800 })
-            P3.current.animate(leftToRight, { duration: 200, iterations: 1, fill: 'both', delay: 700 })
-        } else if (props.LSSwitch === false){
-            P1.current.animate(leftToRight, { duration: 200, iterations: 1, fill: 'both', direction: 'reverse' })
-            P2.current.animate(rightToLeft, { duration: 200, iterations: 1, fill: 'both', delay: 200, direction: 'reverse' })
-            P3.current.animate(leftToRight, { duration: 200, iterations: 1, fill: 'both', direction: 'reverse', })
-        }
     }, [props.LSSwitch]);
 
 
     return (
-        <>
-            <span ref={P1} id='P1'><p className='LSP1'>Poke</p></span>
-            <span ref={P2} id='P2'><p className='LSP2'>Store</p></span>
-            <span ref={P3} id='P3'>
-            <div className="loader">
-    <div className="dot"></div>
-</div>
-<div className="loader">
-    <div className="dot"></div>
-</div>
-<div className="loader">
-    <div className="dot"></div>
-</div>
-<div className="loader">
-    <div className="dot"></div>
-</div>
-<div className="loader">
-    <div className="dot"></div>
-</div>
-<div className="loader">
-    <div className="dot"></div>
-</div>
-                <span className='progresoBar'>
-                    <span className='PBar' style={{width:(Data.progreso * 10) + '%'}}/>
-                </span>
+        <div ref={ref1} id='loaderBox'>
+            <span className='part' />
+            <span className='part' />
+            <span className='part' />
+            <span className='part'><p className='partP1'>Poke</p></span>
+            <span className='part'><p className='partP2'>Store</p></span>
+            <span className='part' />
+            <span className='part'>
+                <div id='barLoader'>
+                    <span style={{ width: (progreso * 10) + '%' }} id='barLoaderContent' />
+                </div>{" " + progreso}/10
             </span>
-        </>
+            <span className='part'>
+                <div className="loader">
+                    <div className="dot"></div>
+                </div>
+                <div className="loader">
+                    <div className="dot"></div>
+                </div>
+                <div className="loader">
+                    <div className="dot"></div>
+                </div>
+                <div className="loader">
+                    <div className="dot"></div>
+                </div>
+                <div className="loader">
+                    <div className="dot"></div>
+                </div>
+                <div className="loader">
+                    <div className="dot"></div>
+                </div>
+            </span>
+            <span className='part' />
+            <span className='part' />
+        </div>
     )
 }

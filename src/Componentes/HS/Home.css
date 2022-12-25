@@ -1,23 +1,19 @@
 #content-box {
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   margin: auto;
-  padding: 0;
-  margin: 0;
-  position: relative;
-  backdrop-filter: blur(4px);
+  padding: 90px 0 0 0;
+  margin: 0 ;
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
+  justify-content: center;
 }
 
 #auxBox {
   width: calc(100vw - 4vw);
-  height: 83vh;
+  height: calc(100% - 140px );
   position: relative;
-  margin: 100px auto 0 auto;
   overflow: hidden;
-  border-radius: 3px;
 }
 
 #catalogo {
@@ -27,13 +23,12 @@
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
-  position: relative;
   overflow: scroll;
-  background-color: #f1f1f19f;
+  background-color: #f1f1f1d2;
 }
 
 #catalogo::-webkit-scrollbar {
-  width: 10px;
+  width: 8px;
   height: 0;
   background-color: #80808085;
 }
@@ -44,13 +39,9 @@
 }
 
 #Msj_Productos {
-  font-size: 1.4em;
+  font-size: 2em;
+  text-align: center;
   margin: auto;
   user-select: none;
 }
 
-@media screen and (max-width: 824px) {
-  #content-box {
-    width: calc(100% - 2vw);
-  }
-}

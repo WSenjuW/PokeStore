@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext, useDebugValue, useReducer } from 'react';
+import React, { useState, useEffect, useContext, useDebugValue, useReducer, useRef } from 'react';
 import NavTop from '../NavTop/NavTop1_0';
 import { GuidePage } from "./GuidePage";
 import { TarjetaPokemon } from "./TarjetaPokemon";
@@ -20,7 +20,7 @@ const reducer = (state, action) => {
 
             break;
         case 'ORDER_ITEM': return { ...state, order: action.item }
-        default: return { ...state, types: [] }
+        default: return { order: undefined, types: [] }
             break;
     };
 
@@ -35,43 +35,40 @@ export function Home(props) {
     const [indexPage, setIndexPage] = useState(0);
     const [inputValue, setInputValue] = useState('');
     const [filtros, dispatchFiltros] = useReducer(reducer, { order: undefined, types: [] })
+    const refCatalogo = useRef();
 
+
+    useEffect(() => {
+
+        refCatalogo.current.scrollTop = 0
+    }, [indexPage]);
 
 
     useEffect(() => {
         let arr;
         let arr2;
-        switch (filtros.types.length) {
-            case 0: arr = datos;
-                break;
-            case 1: arr = datos.filter(e => e.type.includes(filtros.types[0]));
-                break;
-            case 2: arr = datos.filter(e => e.type.includes(filtros.types[0]) && e.type.includes(filtros.types[1]));
-                break;
-        }
 
-        // console.log(arr);
+        if (filtros.types.length === 0) arr = (inputValue === "" ? [...datos]: [...pokeData]);
+        if (filtros.types.length === 1) arr = datos.filter(e => e.type.includes(filtros.types[0]));
+        if (filtros.types.length === 2) arr = datos.filter(e => e.type.includes(filtros.types[0]) && e.type.includes(filtros.types[1]));
 
-        switch (filtros.order) {
-            case 'A-Z': arr2 = arr.sort((a, b) => a.name > b.name ? 1 : -1);
-                break;
-            case 'Z-A': arr2 = arr.sort((a, b) => a.name < b.name ? 1 : -1);
-                break;
-            case 'Price ↾': arr2 = arr.sort((a, b) => a.price - b.price);
-                break;
-            case 'Price ⇂': arr2 = arr.sort((a, b) => b.price - a.price);
-                break;
-        }
-        if (filtros.order === undefined) setPokeData(arr);
-        else setPokeData([...arr2]);
+
+        if (filtros.order === undefined) arr2 = [...arr];
+        if (filtros.order === 'A-Z') arr2 = arr.sort((a, b) => a.name > b.name ? 1 : -1);
+        if (filtros.order === 'Z-A') arr2 = arr.sort((a, b) => a.name < b.name ? 1 : -1);
+        if (filtros.order === 'Price ↾') arr2 = arr.sort((a, b) => a.price - b.price);
+        if (filtros.order === 'Price ⇂') arr2 = arr.sort((a, b) => b.price - a.price);
+
+        setPokeData([...arr2]);
 
     }, [filtros]);
 
 
 
     useEffect(() => {
-        setPokeData(datos.filter((e) => e.name.includes(inputValue)));
-        dispatchFiltros({ type: '' })
+        setPokeData([...datos.filter((e) => e.name.includes(inputValue))]);
+        if (filtros !== {order: undefined,types:[]})  dispatchFiltros({ type: '' })
+        
     }, [inputValue]);
 
 
@@ -100,7 +97,9 @@ export function Home(props) {
                 <FilterList
                     filtros={{ ...filtros, dispatchFiltros }}
                 />
-                <section id="catalogo" >
+                <section id="catalogo"
+                    ref={refCatalogo}
+                >
                     {
                         pokeDataContent.length !== 0
                             ?

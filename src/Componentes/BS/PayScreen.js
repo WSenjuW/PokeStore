@@ -71,9 +71,9 @@ export default function PayScreen(props) {
                 }
             </div>
             <section id='PSB2'>
-                <p id="PIB">{total.TotalProductos} products</p>
+                <p id="PIB">{total.TotalProductos} Products</p>
                 <div id='infoBuy'>
-                    <p id='PIB'>Final price<br />${total.TotalPrecio}</p>
+                    <p id='PIB'>Total ${total.TotalPrecio}</p>
                     <button disabled={carrito.length === 0 ? true : false} id={carrito.length === 0 ? 'btnBuy2' : 'btnBuy'}>Buy</button>
                 </div>
             </section>
